@@ -4,6 +4,7 @@
 
 // TODO: implement scheduling
 void handle_timer(uint32_t esp) {
+   (void)esp;
    //printk("Timer\n");
    send_EOI(0x20);
 }
