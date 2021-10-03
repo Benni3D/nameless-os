@@ -25,6 +25,7 @@ KERNEL_OBJS =				\
 	kernel/tty.o			\
 	kernel/printk.o		\
 	kernel/errors.o		\
+	kernel/uname.o			\
 	fs/tarfs.o				\
 	lib/string.o			\
 	lib/snprintf.o

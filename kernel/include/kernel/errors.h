@@ -9,5 +9,6 @@
 #define EISDIR    6
 #define ENOTDIR   7
 #define EINVAL    8
+#define EFAULT    9
 
 #endif /* FILE_KERNEL_ERRORS_H */
