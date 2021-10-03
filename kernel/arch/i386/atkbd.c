@@ -299,8 +299,8 @@ static void mf2_kbd_handle(int port) {
 
 static int mouse_init(int port, uint8_t ident[2]) {
    (void)ident;
-   printk("atkbd: initializing 'PS/2 mouse'.\n");
-   //send_cmdp(port, 0xF4, false);
+   //printk("atkbd: initializing 'PS/2 mouse'.\n");
+   send_cmdp(port, 0xF4, false);
 
    return 0;
 }
@@ -308,11 +308,13 @@ static void mouse_handle(int port) {
    (void)port;
    if (in_setup)
       return;
+   const unsigned timeout = 100;
    uint8_t data[3];
-   data[0] = recv_data();
+   if (!recv_data_wto(&data[0], timeout))
+      return;
    data[1] = recv_data();
    data[2] = recv_data();
-   //printk("x: %d\ny: %d\n", (char)data[1], (char)data[2]);
+   printk("x: %d\ny: %d\n", (char)data[1], (char)data[2]);
 }
 
 const struct atkbd_driver atkbd_drivers[] = {
